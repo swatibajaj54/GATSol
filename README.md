@@ -26,7 +26,7 @@ pip install torch_geometric==2.3.0 fair-esm
 
 ## 1.Predict your own protein
 
-1. Download the best model after training by following the **readme.md** file in GATSol/check_point/best_model/readme.md, and put it into the best_model folder.
+1. Download the best model after training by following the **readme.md** file in GATSol/check_point/best_model/readme.md, and put it into the check_point/best_model folder.
 
 2. You must prepare your protein as the format **fasta** and **pdb**, and then put them in the folder below:
 
