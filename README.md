@@ -15,8 +15,8 @@ Then install the GATSol environment with the following commands, but first make 
 Then you can install GATSol environment manually by following the instructions:
 
 ```shell
-conda create -n GATSol python=3.9
-conda activate GATSol
+conda create -n pyg python=3.9
+conda activate pyg
 pip install torch==2.2.2 torchvision torchaudio
 pip install pandas bio seaborn matplotlib_inline
 pip install scikit-learn transformers Ipython
@@ -42,6 +42,7 @@ pip install torch_geometric==2.3.0 fair-esm
    cd GATSol/Predict
    bash ./tools/Predict.sh
    ```
+
 ## 2.Re-train the model
 
 1. cd to the GAT project directory
