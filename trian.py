@@ -16,7 +16,7 @@ from torch_geometric.nn import GATConv
 import torch.nn.functional as F
 from sklearn.metrics import roc_curve
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1' 
-from utils import predictions
+from utils import predictions, get_hardware_name
 
 
 def set_seed(seed):
@@ -48,25 +48,25 @@ val1_path = "/home/bli/homology/dataset/Scerevisiae/afblast_371/afpkl_371"
 for filename in os.listdir(train_path):
   file_path = os.path.join(train_path, filename)
   with open(file_path, 'rb') as f:
-    data = pickle.load(f).to(torch.device('cuda'))
+    data = pickle.load(f).to(torch.device(get_hardware_name()))
   train_dataset.append(data)
 
 for filename in os.listdir(test_path):
   file_path = os.path.join(test_path, filename)
   with open(file_path, 'rb') as f:
-    data = pickle.load(f).to(torch.device('cuda'))
+    data = pickle.load(f).to(torch.device(get_hardware_name()))
   test_dataset.append(data)
 
 for filename in os.listdir(val_path):
   file_path = os.path.join(val_path, filename)
   with open(file_path, 'rb') as f:
-    data = pickle.load(f).to(torch.device('cuda'))
+    data = pickle.load(f).to(torch.device(get_hardware_name()))
   val_dataset.append(data)
 
 for filename in os.listdir(val1_path):
   file_path = os.path.join(val1_path, filename)
   with open(file_path, 'rb') as f:
-    data = pickle.load(f).to(torch.device('cuda'))
+    data = pickle.load(f).to(torch.device(get_hardware_name()))
   val1_dataset.append(data)
 
 # 打乱数据集的顺序

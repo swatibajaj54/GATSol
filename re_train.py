@@ -12,7 +12,7 @@ import torch.nn.functional as F
 from sklearn.metrics import roc_curve
 from sklearn import metrics
 from scipy.stats import pearsonr
-from utils import predictions
+from utils import predictions, get_hardware_name
 
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1' 

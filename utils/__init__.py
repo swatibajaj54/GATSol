@@ -19,3 +19,7 @@ def predictions(model, device, loader):
             y_true = torch.cat((y_true, data.y),0)
             
     return y_hat, y_true
+
+
+def get_hardware_name():
+    return 'cuda' if torch.cuda.is_available() else 'cpu'

@@ -10,7 +10,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 from torch import optim
 import datetime
-from utils import predictions
+from utils import predictions, get_hardware_name
 
 # 定义图神经网络模型
 class GATClassifier(nn.Module):
@@ -75,7 +75,7 @@ for learning_rate in [0.0000005,0.00000005]:
     for filename in os.listdir(data_path):
         file_path = os.path.join(data_path, filename)
         with open(file_path, 'rb') as f:
-            data = pickle.load(f).to(torch.device('cuda'))
+            data = pickle.load(f).to(torch.device(get_hardware_name()))
         dataset.append(data)
 
     # 设置训练参数
