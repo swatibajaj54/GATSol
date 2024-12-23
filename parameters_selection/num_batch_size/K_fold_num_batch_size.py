@@ -62,8 +62,8 @@ def test(model, device, loader, criterion):
 
 def predictions(model, device, loader):
     model.eval()
-    y_hat = torch.tensor([]).cuda()
-    y_true = torch.tensor([]).cuda()
+    y_hat = torch.tensor([]).to(device)
+    y_true = torch.tensor([]).to(device)
     with torch.no_grad():
         for data in loader:
             data = data.to(device)

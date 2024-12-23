@@ -10,6 +10,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 from torch import optim
 import datetime
+from utils import predictions
 
 print("...............data loading...............")
 
@@ -86,19 +87,6 @@ def test(model, device, loader, criterion):
             loss += criterion(output, data.y).item()
     return loss/len(loader.dataset)
 
-def predictions(model, device, loader):
-    model.eval()
-    y_hat = torch.tensor([]).cuda()
-    y_true = torch.tensor([]).cuda()
-    with torch.no_grad():
-        for data in loader:
-            data = data.to(device)
-            output = model(data)
-            if output.dim() == 0:
-                output = output.unsqueeze(0)
-            y_hat = torch.cat((y_hat, output),0) 
-            y_true = torch.cat((y_true, data.y),0)
-    return y_hat, y_true
 
 # 五折交叉验证
 kfold = KFold(n_splits=5)

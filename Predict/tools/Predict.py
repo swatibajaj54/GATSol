@@ -14,6 +14,8 @@ import torch.optim as optim
 from torch_geometric.nn import GCNConv, global_mean_pool
 from torch_geometric.nn import GATConv
 import torch.nn.functional as F
+from utils import predictions
+
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1' 
 
 def name_seq_dict(path):
@@ -44,19 +46,6 @@ class GATClassifier(nn.Module):
         # x = self.lin1(x)
         return x.squeeze()
 
-def predictions(model, device, loader):
-    model.eval()
-    y_hat = torch.tensor([]).cuda()
-    y_true = torch.tensor([]).cuda()
-    with torch.no_grad():
-        for data in tqdm(loader):
-            data = data.to(device)
-            output = model(data)
-            if output.dim() == 0:
-                output = output.unsqueeze(0)
-            y_hat = torch.cat((y_hat, output),0) 
-            y_true = torch.cat((y_true, data.y),0)
-    return y_hat, y_true
 
 def print_box(message):
     box_width = 40
